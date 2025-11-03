@@ -81,7 +81,6 @@
 
 ```
 Ciallo_Printer/
-├── .gitignore          // Git 忽略文件列表 (.idea, cmake-build-* 等)
 ├── CMakeLists.txt      // CMake 编译配置文件
 ├── resources/          // 程序运行所需的静态资源 (图片、音频)
 ├── src/                // 源代码文件夹
@@ -89,3 +88,4 @@ Ciallo_Printer/
 ├── 请安装我.ttf        // 依赖的字体文件
 └── README.md
 ```
+
