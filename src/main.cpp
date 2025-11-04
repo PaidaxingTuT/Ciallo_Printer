@@ -13,7 +13,7 @@ const string animeName = "anime";
 int animeNum = 1;
 
 /**
- * @struct »­²¼
+ * @struct ç”»å¸ƒ
  */
 struct Canvas {
     int width;
@@ -22,10 +22,10 @@ struct Canvas {
 };
 
 /**
- * @º¯Êı »æÖÆ»­²¼
+ * @å‡½æ•° ç»˜åˆ¶ç”»å¸ƒ
  */
 void drawCanvas(const Canvas &canvas) {
-    int offsetX = 400; // UIÇø¿í¶È
+    int offsetX = 400; // UIåŒºå®½åº¦
     for (int zong = 0; zong < canvas.height; zong++) {
         for (int heng = 0; heng < canvas.width; heng++) {
             int x1 = heng * PIXEL_SIZE + offsetX;
@@ -39,12 +39,12 @@ void drawCanvas(const Canvas &canvas) {
 }
 
 /**
- * @º¯Êı ±£´æ»­²¼
+ * @å‡½æ•° ä¿å­˜ç”»å¸ƒ
  */
 void saveCanvas(const Canvas &canvas, const string &filename) {
     ofstream fout(filename);
     if (!fout) {
-        cout << "ÎŞ·¨Ğ´Èë" << endl;
+        cout << "æ— æ³•å†™å…¥" << endl;
         return;
     } else {
         fout << canvas.width << " " << canvas.height << endl;
@@ -54,17 +54,17 @@ void saveCanvas(const Canvas &canvas, const string &filename) {
             }
         }
         fout.close();
-        cout << "»­²¼ÒÑ±£´æµ½ÎÄ¼ş: " << filename << endl;
+        cout << "ç”»å¸ƒå·²ä¿å­˜åˆ°æ–‡ä»¶: " << filename << endl;
     }
 }
 
 /**
- * @º¯Êı ¶ÁÈ¡»­²¼
+ * @å‡½æ•° è¯»å–ç”»å¸ƒ
  */
 void loadCanvas(Canvas &canvas, const string &filename) {
     ifstream fin(filename);
     if (!fin) {
-        cout << "ÎŞ·¨¶ÁÈ¡" << endl;
+        cout << "æ— æ³•è¯»å–" << endl;
         return;
     } else {
         fin >> canvas.width >> canvas.height;
@@ -75,12 +75,12 @@ void loadCanvas(Canvas &canvas, const string &filename) {
             }
         }
         fin.close();
-        cout << "»­²¼ÒÑ´ÓÎÄ¼ş¼ÓÔØ: " << filename << endl;
+        cout << "ç”»å¸ƒå·²ä»æ–‡ä»¶åŠ è½½: " << filename << endl;
     }
 }
 
 /**
- * @º¯Êı Çå¿Õ»­²¼
+ * @å‡½æ•° æ¸…ç©ºç”»å¸ƒ
  */
 void clearCanvas(Canvas &canvas) {
     for (int zong = 0; zong < canvas.height; zong++) {
@@ -92,13 +92,13 @@ void clearCanvas(Canvas &canvas) {
 }
 
 /**
- * @Õ» ³·»ØÓëÖØ×ö
+ * @æ ˆ æ’¤å›ä¸é‡åš
  */
 stack<vector<vector<COLORREF>>> undoStack;
 stack<vector<vector<COLORREF>>> redoStack;
 
 /**
- * ×ó°´Å¥
+ * å·¦æŒ‰é’®
  */
 void showLeftButton(const CHAR *const text , COLORREF color){
     setlinestyle(PS_SOLID, 3);
@@ -109,12 +109,12 @@ void showLeftButton(const CHAR *const text , COLORREF color){
 
     setbkmode(TRANSPARENT);
     settextcolor(color);
-    settextstyle(60, 0, "ººÒÇÏñËØ 11px U");
+    settextstyle(60, 0, "æ±‰ä»ªåƒç´  11px U");
     outtextxy( 220 - textwidth(text)/2, 374 - textheight(text)/2 - 7, text);
 }
 
 /**
- * ÓÒ°´Å¥
+ * å³æŒ‰é’®
  */
 void showRightButton(const CHAR *const text , COLORREF color){
     setlinestyle(PS_SOLID, 3);
@@ -125,12 +125,12 @@ void showRightButton(const CHAR *const text , COLORREF color){
 
     setbkmode(TRANSPARENT);
     settextcolor(color);
-    settextstyle(60, 0, "ººÒÇÏñËØ 11px U");
+    settextstyle(60, 0, "æ±‰ä»ªåƒç´  11px U");
     outtextxy(580 - textwidth(text)/2, 374 - textheight(text)/2 - 7, text);
 }
 
 /**
- * @º¯Êı ÓÍÆáÍ°
+ * @å‡½æ•° æ²¹æ¼†æ¡¶
  */
 void dfsFill(Canvas &canvas, int y, int x, COLORREF oldColor, COLORREF newColor) {
     if (x < 0 || y < 0 || x >= canvas.width || y >= canvas.height) return;
@@ -145,7 +145,7 @@ void dfsFill(Canvas &canvas, int y, int x, COLORREF oldColor, COLORREF newColor)
 }
 
 /**
- * @º¯Êı ÑÕÉ«Îü¹Ü
+ * @å‡½æ•° é¢œè‰²å¸ç®¡
  */
 void colorStrawber(Canvas &canvas, int x, int y, COLORREF &Color){
     COLORREF pickedColor = canvas.pixel_color[y][x];
@@ -153,12 +153,12 @@ void colorStrawber(Canvas &canvas, int x, int y, COLORREF &Color){
 }
 
 /**
- * @º¯Êı ±£´æ¶¯»­
+ * @å‡½æ•° ä¿å­˜åŠ¨ç”»
  */
 void saveAnime(const Canvas &canvas, const string &animeName) {
     ofstream fout(animeName);
     if (!fout) {
-        cout << "ÎŞ·¨Ğ´Èë" << endl;
+        cout << "æ— æ³•å†™å…¥" << endl;
         return;
     } else {
         fout << canvas.width << " " << canvas.height << endl;
@@ -168,17 +168,17 @@ void saveAnime(const Canvas &canvas, const string &animeName) {
             }
         }
         fout.close();
-        cout << "ÒÑ±£´æµÚ " << animeNum << " Ö¡" << endl;
+        cout << "å·²ä¿å­˜ç¬¬ " << animeNum << " å¸§" << endl;
     }
 }
 
 /**
- * @º¯Êı ¼ÓÔØ¶¯»­
+ * @å‡½æ•° åŠ è½½åŠ¨ç”»
  */
 void loadAnime(Canvas &canvas, const string &animeName) {
     ifstream fin(animeName);
     if (!fin) {
-        cout << "ÎŞ·¨¶ÁÈ¡" << endl;
+        cout << "æ— æ³•è¯»å–" << endl;
         return;
     } else {
         fin >> canvas.width >> canvas.height;
@@ -189,21 +189,21 @@ void loadAnime(Canvas &canvas, const string &animeName) {
             }
         }
         fin.close();
-        cout << "ÎÄ¼ş " << animeName << " ÒÑ¼ÓÔØ" << endl;
+        cout << "æ–‡ä»¶ " << animeName << " å·²åŠ è½½" << endl;
     }
 }
 
 /**
- * @º¯Êı É¾³ı¶¯»­
+ * @å‡½æ•° åˆ é™¤åŠ¨ç”»
  */
 void deleteAnime(const string &animeName) {
     remove(animeName.c_str());
-    cout << "ÎÄ¼ş " << animeName << " ÒÑÉ¾³ı"<< endl;
+    cout << "æ–‡ä»¶ " << animeName << " å·²åˆ é™¤"<< endl;
 }
 
 
 /**
- * @Ö÷³ÌĞò
+ * @ä¸»ç¨‹åº
  */
 int main() {
     int width = 60;
@@ -215,8 +215,7 @@ int main() {
             height,
             vector<vector<COLORREF>>(height, vector<COLORREF>(width, WHITE))
     };
-
-    // Æô¶¯Æ÷²¿·ÖÍêÈ«±£Áô
+    //å¯åŠ¨å™¨
     initgraph(800, 492);
     Sleep(100);
     IMAGE bg;
@@ -227,25 +226,25 @@ int main() {
     Sleep(500);
     settextcolor(RGB(192, 192, 192));
     setbkmode(TRANSPARENT);
-    settextstyle(172, 0, "ººÒÇÏñËØ 11px U");
-    int text_width = textwidth("Ciallo»­°å");
-    int text_height = textheight("Ciallo»­°å");
+    settextstyle(172, 0, "æ±‰ä»ªåƒç´  11px U");
+    int text_width = textwidth("Cialloç”»æ¿");
+    int text_height = textheight("Cialloç”»æ¿");
     int x6 = 400 - text_width / 2;
     int y6 = 492 / 4 - text_height / 2;
-    outtextxy(x6 + 3, y6 + 3, "Ciallo»­°å");
+    outtextxy(x6 + 3, y6 + 3, "Cialloç”»æ¿");
     settextcolor(BLACK);
-    outtextxy(x6, y6, "Ciallo»­°å");
-    settextstyle(64, 0, "ººÒÇÏñËØ 11px U");
-    int text_width1 = textwidth("Ciallo¡«(¡Ï¡¤ ¦Ø < )¡Ğ¡ï");
-    int text_height1 = textheight("Ciallo¡«(¡Ï¡¤ ¦Ø < )¡Ğ¡ï");
+    outtextxy(x6, y6, "Cialloç”»æ¿");
+    settextstyle(64, 0, "æ±‰ä»ªåƒç´  11px U");
+    int text_width1 = textwidth("Cialloï½(âˆ Â· Ï‰ < )âŒ’â˜…");
+    int text_height1 = textheight("Cialloï½(âˆ Â· Ï‰ < )âŒ’â˜…");
     int x7 = 400 - text_width1 / 2;
     int y7 = 492 / 2 - text_height1 / 2 + 10;
     settextcolor(RGB(255, 153, 153));
-    outtextxy(x7 + 2, y7 + 2, "Ciallo¡«(¡Ï¡¤ ¦Ø < )¡Ğ¡ï");
+    outtextxy(x7 + 2, y7 + 2, "Cialloï½(âˆ Â· Ï‰ < )âŒ’â˜…");
     settextcolor(RGB(204, 0, 0));
-    outtextxy(x7, y7, "Ciallo¡«(¡Ï¡¤ ¦Ø < )¡Ğ¡ï");
-    settextstyle(32, 0, "ººÒÇÏñËØ 11px U");
-    const CHAR *const author = "BY ÅÉ´óĞÇ";
+    outtextxy(x7, y7, "Cialloï½(âˆ Â· Ï‰ < )âŒ’â˜…");
+    settextstyle(32, 0, "æ±‰ä»ªåƒç´  11px U");
+    const CHAR *const author = "BY æ´¾å¤§æ˜Ÿ";
     int text_width2 = textwidth(author);
     int text_height2 = textheight(author);
     int x1 = 800 - text_width2 - 10;
@@ -253,25 +252,25 @@ int main() {
     settextcolor(BLUE + GREEN);
     outtextxy(x1, y1, author);
 
-    showLeftButton("¿ªÊ¼", WHITE);
-    showRightButton("ÍË³ö", WHITE);
+    showLeftButton("å¼€å§‹", WHITE);
+    showRightButton("é€€å‡º", WHITE);
 
     while (true) {
         MOUSEMSG msg = GetMouseMsg();
         if (msg.x >= 165 && msg.x <= 275 && msg.y >= 354 && msg.y <= 394) {
             BeginBatchDraw();
             mciSendString(R"(play resources/click.mp3 from 0)", NULL, 0, NULL);
-            showLeftButton("¿ªÊ¼", YELLOW);
+            showLeftButton("å¼€å§‹", YELLOW);
             EndBatchDraw();
         } else if (msg.x >= 525 && msg.x <= 635 && msg.y >= 354 && msg.y <= 394) {
             BeginBatchDraw();
             mciSendString(R"(play resources/click.mp3 from 0)", NULL, 0, NULL);
-            showRightButton("ÍË³ö", YELLOW);
+            showRightButton("é€€å‡º", YELLOW);
             EndBatchDraw();
         } else {
             BeginBatchDraw();
-            showLeftButton("¿ªÊ¼", WHITE);
-            showRightButton("ÍË³ö", WHITE);
+            showLeftButton("å¼€å§‹", WHITE);
+            showRightButton("é€€å‡º", WHITE);
             EndBatchDraw();
         }
 
@@ -280,12 +279,12 @@ int main() {
                 mciSendString(R"(play resources/logo.mp3 from 0)", NULL, 0, NULL);
                 settextcolor(BLACK);
                 setbkmode(TRANSPARENT);
-                settextstyle(48, 0, "ººÒÇÏñËØ 11px U");
-                int t1 = textwidth("¼ÓÔØÖĞ");
-                int t2 = textheight("¼ÓÔØÖĞ");
+                settextstyle(48, 0, "æ±‰ä»ªåƒç´  11px U");
+                int t1 = textwidth("åŠ è½½ä¸­");
+                int t2 = textheight("åŠ è½½ä¸­");
                 int x12 = 400 - t1 / 2;
                 int y12 = 246 - t2 / 2 + 230;
-                outtextxy(x12, y12-45, "¼ÓÔØÖĞ");
+                outtextxy(x12, y12-45, "åŠ è½½ä¸­");
 
                 setlinestyle(PS_SOLID, 3);
                 setlinecolor(BLACK);
@@ -307,19 +306,19 @@ int main() {
             if (msg.x >= 525 && msg.x <= 635 && msg.y >= 354 && msg.y <= 394) {
                 mciSendString("stop bgm", NULL, 0, NULL);
                 closegraph();
-                cout << "»¶Ó­ÔÙ´ÎÊ¹ÓÃ£¡" << endl;
+                cout << "æ¬¢è¿å†æ¬¡ä½¿ç”¨ï¼" << endl;
                 return 0;
             }
         }
     }
 
     start:
-    cout << "»¶Ó­Ê¹ÓÃCiallo»­°å!" << endl;
-    cout << "Êó±ê×ó¼üÍ¿É«£¬ÓÒ¼üÇå³ı" << endl;
+    cout << "æ¬¢è¿ä½¿ç”¨Cialloç”»æ¿!" << endl;
+    cout << "é¼ æ ‡å·¦é”®æ¶‚è‰²ï¼Œå³é”®æ¸…é™¤" << endl;
 
     initgraph(width * PIXEL_SIZE + 400, height * PIXEL_SIZE);
     IMAGE img;
-    loadimage(&img, _T("resources/ui.bmp"), 400, 903); // ×ó±ß¿í 400
+    loadimage(&img, _T("resources/ui.bmp"), 400, 903); // å·¦è¾¹å®½ 400
     putimage(0, 0, &img);
 
     drawCanvas(canvas);
@@ -330,11 +329,11 @@ int main() {
     while (true) {
         MOUSEMSG msg = GetMouseMsg();
         int zong = msg.y / PIXEL_SIZE;
-        int heng = (msg.x - 400) / PIXEL_SIZE; // XÆ«ÒÆ400
+        int heng = (msg.x - 400) / PIXEL_SIZE; // Xåç§»400
 
         if (msg.uMsg == WM_LBUTTONDOWN) {
-            //ÑÕÉ«Ñ¡ÔñÇøÓò
-            //µÚÒ»ĞĞ
+            //é¢œè‰²é€‰æ‹©åŒºåŸŸ
+            //ç¬¬ä¸€è¡Œ
             if(msg.x >=32 and msg.x <= 131 and msg.y >= 28 and msg.y <= 91){
 
                 Color = RGB(255, 50, 50);
@@ -351,7 +350,7 @@ int main() {
                 mciSendString(R"(play resources/yellow.mp3 from 0)", NULL, 0, NULL);
             }
 
-            //µÚ¶şĞĞ
+            //ç¬¬äºŒè¡Œ
             if(msg.x >=32 and msg.x <= 131 and msg.y >= 100 and msg.y <= 184){
 
                 Color = RGB(50, 220, 50);
@@ -370,7 +369,7 @@ int main() {
                 mciSendString(R"(play resources/blue.mp3 from 0)", NULL, 0, NULL);
             }
 
-            //µÚÈıĞĞ
+            //ç¬¬ä¸‰è¡Œ
             if(msg.x >=32 and msg.x <= 131 and msg.y >= 191 and msg.y <= 248){
 
                 Color = RGB(50, 50, 255);
@@ -389,7 +388,7 @@ int main() {
                 mciSendString(R"(play resources/white.mp3 from 0)", NULL, 0, NULL);
             }
 
-            //²Ëµ¥ÇøÓò
+            //èœå•åŒºåŸŸ
             if(msg.x >=35 and msg.x <= 194 and msg.y >= 279 and msg.y <= 368){
                 mciSendString(R"(play resources/ding.mp3 from 0)", NULL, 0, NULL);
                 saveCanvas(canvas, filename);
@@ -440,7 +439,7 @@ int main() {
 
             if(msg.x >=149 and msg.x <= 257 and msg.y >= 636 and msg.y <= 761){
                 if(animeNum == 1){
-                    cout << "ÎŞ¶¯»­±»¼ÓÔØ" << endl;
+                    cout << "æ— åŠ¨ç”»è¢«åŠ è½½" << endl;
                     mciSendString(R"(play resources/zako.mp3 from 0)", NULL, 0, NULL);
                 } else {
                     mciSendString(R"(play resources/ciallo.mp3 from 0)", NULL, 0, NULL);
@@ -455,7 +454,7 @@ int main() {
 
             if(msg.x >=264 and msg.x <= 367 and msg.y >= 636 and msg.y <= 761){
                 if(animeNum == 1){
-                    cout << "ÎŞ¶¯»­±»É¾³ı" << endl;
+                    cout << "æ— åŠ¨ç”»è¢«åˆ é™¤" << endl;
                     mciSendString(R"(play resources/zako.mp3 from 0)", NULL, 0, NULL);
                 } else {
                     mciSendString(R"(play resources/clear.mp3 from 0)", NULL, 0, NULL);
@@ -511,6 +510,6 @@ int main() {
 
     stop:
     closegraph();
-    cout << "»¶Ó­ÔÙ´ÎÊ¹ÓÃ£¡" << endl;
+    cout << "æ¬¢è¿å†æ¬¡ä½¿ç”¨ï¼" << endl;
     return 0;
 }
